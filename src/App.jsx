@@ -1,6 +1,7 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Battle } from './component/Battle';
+import { Home } from './component/Home';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
             path="/"
             element={
               // eslint-disable-next-line react/jsx-pascal-case
-              <Battle/>
+              <Home/>
             }
           />
 

@@ -3,11 +3,12 @@ body{
   background-size: cover; /* This will make the image cover the entire background */
   background-attachment: fixed; 
 
+
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   min-height: 100vh;
 
@@ -191,10 +192,16 @@ strong {
   align-items: center;
 }
 .button-row {
+  gap: 20px; /* Adjust this value to control the space between buttons */
+  
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
   display: flex;
-  justify-content:  center;
-  gap: 10px; /* Adjust this value to control the space between buttons */
-  /* padding: 20px; Adjust this value for spacing at the bottom */
+  justify-content: space-between; /* To space the buttons evenly */
+  width: 400px; /* Adjust the width as needed */
+  margin-bottom: 30px;
 }
 
 
@@ -208,15 +215,16 @@ strong {
 	 text-align: center;
 }
  .wrapper {
-	 padding-top: 40px;
-	 padding-bottom: 40px;
+	 /* padding-top: 40px;
+	 padding-bottom: 40px; */
+  
 }
  .wrapper:focus {
 	 outline: 0;
 }
  .clash-card {
 	 background: white;
-	 width: 300px;
+	 /* width: 300px; */
 	 display: inline-block;
 	 margin: auto;
 	 border-radius: 19px;
@@ -227,8 +235,8 @@ strong {
 }
  .clash-card__image {
 	 position: relative;
-	 height: 230px;
-	 margin-bottom: 35px;
+	 height: 150px;
+	 /* margin-bottom: 35px; */
 	 border-top-left-radius: 14px;
 	 border-top-right-radius: 14px;
 }
@@ -236,7 +244,7 @@ strong {
 	 background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/barbarian-bg.jpg');
 }
  .clash-card__image--barbarian img {
-	 width: 400px;
+	 width: 290px;
 	 position: absolute;
 	 top: -65px;
 	 left: -70px;
@@ -245,7 +253,7 @@ strong {
 	 background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/archer-bg.jpg');
 }
  .clash-card__image--archer img {
-	 width: 400px;
+	 width: 290px;
 	 position: absolute;
 	 top: -34px;
 	 left: -37px;
@@ -254,7 +262,7 @@ strong {
 	 background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/giant-bg.jpg');
 }
  .clash-card__image--giant img {
-	 width: 340px;
+	 width: 220px;
 	 position: absolute;
 	 top: -30px;
 	 left: -25px;
@@ -263,7 +271,7 @@ strong {
 	 background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/goblin-bg.jpg');
 }
  .clash-card__image--goblin img {
-	 width: 370px;
+	 width: 250px;
 	 position: absolute;
 	 top: -21px;
 	 left: -37px;
@@ -272,7 +280,7 @@ strong {
 	 background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/wizard-bg.jpg');
 }
  .clash-card__image--wizard img {
-	 width: 345px;
+	 width: 240px;
 	 position: absolute;
 	 top: -28px;
 	 left: -10px;
@@ -385,3 +393,5 @@ strong {
 	 z-index: 999;
 }
  
+
+
