@@ -2,22 +2,23 @@
 import React, { useEffect, useState } from 'react'
 import Web3 from 'web3';
 import contract from '../utils/contract';
-import { useNavigate } from "react-router-dom";
+import styles from "../css/home.module.css"
+import { useNavigate } from 'react-router-dom';
+import logo from "../assets/logo.png"
 
-
-export const Home = ({setPlayerName}) => {
+export const Home = () => {
     const [name, setName] = useState();
-    const [battlename, setBattlename] = useState();
     const [web3, setWeb3] = useState(null);
-    const [account,setAccount]=useState();
-    const navigate= useNavigate()
+    const [account, setAccount] = useState();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loadWeb3 = async () => {
             if (window.ethereum) {
                 const web3 = new Web3(window.ethereum);
                 try {
-                    await window.ethereum.enable(); // Request user permission to access their Ethereum accounts
+                    await window.ethereum.enable();
                     const ac = (await web3.eth.getAccounts())[0]
                     setAccount(ac)
                     setWeb3(web3);
@@ -38,54 +39,79 @@ export const Home = ({setPlayerName}) => {
     const CreateBattle = async () => {
         console.log(account)
 
-        const result = await contract?.methods?.registerPlayer("kishan", "gametoken").send({ from: account }).then((result) => {
-            // Handle the result of the method call
-            console.log('Method result:', result);
-        })
+        const result = await contract?.methods?.registerPlayer(name, "gametoken").send({ from: account })
+            .then((result) => {
+                console.log('Method result:', result);
+                navigate("/createbattle");
+            })
             .catch((error) => {
-                // Handle errors
                 console.error('Error calling contract method:', error);
             });
         console.log(result)
     }
 
-    const RegisterPlayer = async () => {
-        const gasLimit = 3000000; 
-        const name="kishan"
+    // const RegisterPlayer = async () => {
+    //     console.log(account);
+    //     try {
+    //         const gasLimit = await contract?.methods?.registerPlayer(name, "gametoken").estimateGas({ from: account });
+    //         // const gasPrice = web3.utils.toWei('20', 'gwei'); 
 
-        console.log(account)
-        const result = await contract?.methods.registerPlayer(name,"game").send({ from: account,gas:gasLimit }).then((result) => {
-            // Handle the result of the method call
-            setPlayerName(name)
-            console.log('Method result:', result);
-        })
-            .catch((error) => {
-                // Handle errors
-                console.error('Error calling contract method:', error);
-            });
-        console.log(result)
-    }
+    //         const result = await contract?.methods?.registerPlayer(name, "gametoken").send({
+    //             from: account,
+    //             gas: gasLimit,
+    //             // gasPrice: gasPrice,
+    //         });
+
+    //         console.log('RegisterPlayer result:', result);
+    //     } catch (error) {
+    //         console.error('Error calling contract method:', error);
+    //     }
+    // };
+
+
+
+    // const get_AllBattles = async () => {
+    //     console.log(account)
+    //     const result = await contract?.methods.getAllBattles().call().then((result) => {
+
+    //         console.log('get_AllBattles result:', result);
+    //     })
+    //         .catch((error) => {
+    //             console.error('Error calling contract method:', error);
+    //         });
+    //     console.log(result);
+    // }
 
     return (
-        <div>Home
-            <input
-                className="input input-alt"
-                type="text"
-                placeholder="Register Player"
-                required=""
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
-            <input
-                className="input input-alt"
-                type="text"
-                placeholder="Create Battle"
-                required=""
-                value={name}
-                onChange={(e) => setBattlename(e.target.value)}
-            />
-            <button onClick={RegisterPlayer}> reg Function</button>
-            <button onClick={CreateBattle}> Call Function</button>
-        </div>
+        <>
+            <div className={styles.someclass}>
+                <div className="container">
+                    <div className={styles['homeContainer']}>
+                        <img src={logo} className= {styles["logo"]} alt="..." />
+                        <div className={styles['values']}>
+                            <h1 className={styles["heading"]} >  Welcome to NFT Warriors
+                                a Web3 Card Game</h1>
+                            <p className={styles["paragraph"]}> Connect your wallet to start playing
+                                the ultimate Web3 Battle Card Game</p>
+                            <input
+                                className="input"
+                                type="text"
+                                placeholder="Enter Player Name"
+                                required=""
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                            <button className={styles['ui-btn']} onClick={RegisterPlayer}>
+                                <span>
+                                    Register Player
+                                </span>
+                            </button>
+                        </div>
+                        {/* <button onClick={get_AllBattles}> getAllBattles</button> */}
+                    </div>
+                </div>
+            </div>
+        </>
+
     )
 }
