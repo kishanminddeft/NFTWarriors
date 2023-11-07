@@ -1459,3 +1459,4 @@ const contractAddress = '0x9EB94Ce7deF27ba7540286d2758D23444fB6e33e';
 const contract = new web3.eth.Contract(contractABI, contractAddress);
 
 export default contract ;
+
