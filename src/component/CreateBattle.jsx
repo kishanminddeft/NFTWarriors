@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import Web3 from 'web3';
 import contract from '../utils/contract';
+import styles from "../css/createbattle.module.css"
+import logo from "../assets/blacklogo.png"
 
 const CreateBattle = () => {
     const [battlename, setBattlename] = useState();
@@ -44,15 +46,32 @@ const CreateBattle = () => {
     }
     return (
         <>
-            <input
-                className="input input-alt"
-                type="text"
-                placeholder="Create Battle"
-                required=""
-                value={battlename}
-                onChange={(e) => setBattlename(e.target.value)}
-            />
-            <button onClick={Create_Battle}> CreateBattle</button>
+            <div className={styles.someclass}>
+                <div className="container">
+                    <div className={styles['homeContainer']}>
+                        <img src={logo} className= {styles["logo"]} alt="..." />
+                        <div className={styles['values']}>
+                            <h1 className={styles["heading"]} >  Welcome to NFT Warriors
+                                a Web3 Card Game</h1>
+                            <p className={styles["paragraph"]}> Connect your wallet to start playing
+                                the ultimate Web3 Battle Card Game</p>
+                            <input
+                                className="input input-alt"
+                                type="text"
+                                placeholder="Enter Battle Name"
+                                required=""
+                                value={battlename}
+                                onChange={(e) => setBattlename(e.target.value)}
+                            />
+                            <button className={styles['ui-btn']} onClick={Create_Battle}>
+                                <span>
+                                    Create Battle
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div >
         </>
     )
 }

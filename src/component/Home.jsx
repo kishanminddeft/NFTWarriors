@@ -4,7 +4,7 @@ import Web3 from 'web3';
 import contract from '../utils/contract';
 import styles from "../css/home.module.css"
 import { useNavigate } from 'react-router-dom';
-
+import logo from "../assets/logo.png"
 
 export const Home = () => {
     const [name, setName] = useState();
@@ -87,9 +87,10 @@ export const Home = () => {
             <div className={styles.someclass}>
                 <div className="container">
                     <div className={styles['homeContainer']}>
+                        <img src={logo} className= {styles["logo"]} alt="..." />
                         <div className={styles['values']}>
                             <h1 className={styles["heading"]} >  Welcome to NFT Warriors
-                                a Web3 NFT Card Game</h1>
+                                a Web3 Card Game</h1>
                             <p className={styles["paragraph"]}> Connect your wallet to start playing
                                 the ultimate Web3 Battle Card Game</p>
                             <input
@@ -110,7 +111,6 @@ export const Home = () => {
                     </div>
                 </div>
             </div>
-
         </>
 
     )
