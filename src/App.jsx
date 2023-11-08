@@ -2,10 +2,10 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Battle } from "./component/Battle";
 import { Home } from "./component/Home";
-import { CreateBattle } from "./component/createBattle";
 import { useEffect, useState } from "react";
 import { Jointbattle } from "./component/Jointbattle";
 import Web3 from 'web3';
+import CreateBattle from './component/CreateBattle';
 
 function App() {
   const [account, setAccount] = useState();

@@ -36,7 +36,7 @@ export const Home = () => {
         loadWeb3();
     }, []);
 
-    const CreateBattle = async () => {
+    const RegisterPlayer = async () => {
         console.log(account)
 
         const result = await contract?.methods?.registerPlayer(name, "gametoken").send({ from: account })
