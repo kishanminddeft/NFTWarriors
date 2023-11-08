@@ -5,4 +5,4 @@ const contractABI = [{ "inputs": [{ "internalType": "string", "name": "_metadata
 const contractAddress = '0x9309Bd8760850CB2F82Bd171F2791e6D78A40884';
 const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-export default contract ;
+export default contract;

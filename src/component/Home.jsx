@@ -3,13 +3,16 @@ import React, { useEffect, useState } from 'react'
 import Web3 from 'web3';
 import contract from '../utils/contract';
 import styles from "../css/home.module.css"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from "../assets/logo.png"
+import { Loader } from './loader';
+
 
 export const Home = () => {
     const [name, setName] = useState();
     const [web3, setWeb3] = useState(null);
     const [account, setAccount] = useState();
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -37,16 +40,19 @@ export const Home = () => {
     }, []);
 
     const RegisterPlayer = async () => {
+        setLoading(true);
         console.log(account)
 
         const result = await contract?.methods?.registerPlayer(name, "gametoken").send({ from: account })
             .then((result) => {
                 console.log('Method result:', result);
+                setLoading(false);
                 navigate("/createbattle");
             })
             .catch((error) => {
                 console.error('Error calling contract method:', error);
             });
+            
         console.log(result)
     }
 
@@ -87,7 +93,10 @@ export const Home = () => {
             <div className={styles.someclass}>
                 <div className="container">
                     <div className={styles['homeContainer']}>
-                        <img src={logo} className= {styles["logo"]} alt="..." />
+                        <Link className="navbar-brand" to="/">
+                            <img src={logo} className={styles["logo"]} alt="..." />
+                        </Link>
+
                         <div className={styles['values']}>
                             <h1 className={styles["heading"]} >  Welcome to NFT Warriors
                                 a Web3 Card Game</h1>
@@ -106,6 +115,7 @@ export const Home = () => {
                                     Register Player
                                 </span>
                             </button>
+                            {loading && (<Loader />)}
                         </div>
                         {/* <button onClick={get_AllBattles}> getAllBattles</button> */}
                     </div>
